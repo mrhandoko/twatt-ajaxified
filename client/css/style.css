@@ -1,0 +1,19 @@
+input#Twatt {
+    height: 118px;
+}
+
+div#twatt {
+    margin-top: 70px;
+}
+
+button.btn.btn-default {
+    /* text-align: right !important; */
+    float: right;
+}
+.left-side {
+    display: table;
+    float: left;
+    width: 319px;
+    height: auto;
+    margin: 25px;
+}

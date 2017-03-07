@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Twatt Ajaxified</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="left-side">
+      <img src="https://aws-dist.brta.in/2016-02/original_700/0_0_1198_796_7a3a73cbdafb03ee09bd1b78f3beba2099cd4a7e.jpg" class="img-responsive" alt="Responsive image">
+    </div>
+    <div class="wrapper">
+      <div class="container">
+        <form>
+          <div class="form-group">
+            <label>Twatt</label>
+            <input type="text" class="form-control" id="Twatt" placeholder="What's happening?">
+          </div>
+          <button type="submit" class="btn btn-default">Twatt</button>
+        </form>
+        <div id="twatt"></div>
+      </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $.ajax({
+          url: 'http://localhost:3000/timeline',
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+            let result = JSON.parse(data)
+            console.log(result);
+            result.forEach(function(userTwatt) {
+              $("#twatt").append(`<blockquote><p>${userTwatt.text}</p><footer>twitt from <cite title="Source title">${userTwatt.user.screen_name}</cite></footer></blockquote>`)
+            })
+          },
+          fail: function(err) {
+            console.log(err);
+          }
+        })
+      })
+    </script>
+  </body>
+
+</html>
